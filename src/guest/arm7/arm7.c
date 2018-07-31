@@ -219,7 +219,7 @@ static struct jit_guest *arm7_guest_create(struct arm7 *arm) {
   guest->offset_interrupts =
       (int)offsetof(struct armv3_context, pending_interrupts);
   guest->compile_code = (jit_compile_cb)&arm7_compile_code;
-  guest->link_code = (jit_link_cb)&arm7_link_code;
+  guest->link_code = (jit_link_cb)(void*)&arm7_link_code;
   guest->check_interrupts = (jit_interrupt_cb)&arm7_check_interrupts;
   guest->switch_mode = (armv3_switch_mode_cb)&arm7_switch_mode;
   guest->restore_mode = (armv3_restore_mode_cb)&arm7_restore_mode;

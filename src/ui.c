@@ -294,7 +294,8 @@ static int ui_explode_gamedir(struct ui *ui, char *dirs, int num, size_t size) {
   mutex_lock(ui->scan_mutex);
 
   char copy[OPTION_MAX_LENGTH];
-  strncpy(copy, OPTION_gamedir, sizeof(copy));
+  strncpy(copy, OPTION_gamedir, sizeof(copy) - 1);
+  copy[sizeof(copy) - 1] = 0;
 
   int n = 0;
   char *tok = strtok(copy, ";");
@@ -934,7 +935,8 @@ static void ui_video_build(struct ui *ui) {
           break;
         }
       }
-      strncpy(OPTION_aspect, ASPECT_RATIOS[next], sizeof(OPTION_aspect));
+      strncpy(OPTION_aspect, ASPECT_RATIOS[next], sizeof(OPTION_aspect) - 1);
+      OPTION_aspect[sizeof(OPTION_aspect) - 1] = 0;
       OPTION_aspect_dirty = 1;
     }
   }
@@ -969,7 +971,8 @@ static void ui_system_build(struct ui *ui) {
           break;
         }
       }
-      strncpy(OPTION_sync, TIMESYNCS[next], sizeof(OPTION_sync));
+      strncpy(OPTION_sync, TIMESYNCS[next], sizeof(OPTION_sync) - 1);
+      OPTION_sync[sizeof(OPTION_sync) - 1] = 0;
       OPTION_sync_dirty = 1;
     }
   }
@@ -983,7 +986,8 @@ static void ui_system_build(struct ui *ui) {
           break;
         }
       }
-      strncpy(OPTION_region, REGIONS[next], sizeof(OPTION_region));
+      strncpy(OPTION_region, REGIONS[next], sizeof(OPTION_region - 1));
+      OPTION_region[sizeof(OPTION_region) - 1] = 0;
       OPTION_region_dirty = 1;
     }
   }
@@ -997,7 +1001,8 @@ static void ui_system_build(struct ui *ui) {
           break;
         }
       }
-      strncpy(OPTION_language, LANGUAGES[next], sizeof(OPTION_language));
+      strncpy(OPTION_language, LANGUAGES[next], sizeof(OPTION_language - 1));
+      OPTION_language[sizeof(OPTION_language) - 1] = 0;
       OPTION_language_dirty = 1;
     }
   }
@@ -1011,7 +1016,8 @@ static void ui_system_build(struct ui *ui) {
           break;
         }
       }
-      strncpy(OPTION_broadcast, BROADCASTS[next], sizeof(OPTION_broadcast));
+      strncpy(OPTION_broadcast, BROADCASTS[next], sizeof(OPTION_broadcast - 1));
+      OPTION_broadcast[sizeof(OPTION_broadcast) - 1] = 0;
       OPTION_broadcast_dirty = 1;
     }
   }

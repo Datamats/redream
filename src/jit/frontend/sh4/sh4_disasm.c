@@ -13,7 +13,7 @@ struct jit_opdef sh4_opdefs[NUM_SH4_OPS] = {
    #sig,                                          \
    cycles,                                        \
    flags,                                         \
-   (jit_fallback)&sh4_fallback_##name},
+   (jit_fallback)(void*)&sh4_fallback_##name},
 #include "jit/frontend/sh4/sh4_instr.inc"
 #undef SH4_INSTR
 };

@@ -462,7 +462,8 @@ static void emu_set_aspect_ratio(struct emu *emu, const char *new_ratio) {
   }
 
   /* update persistent option as well as this session's aspect ratio */
-  strncpy(OPTION_aspect, ASPECT_RATIOS[i], sizeof(OPTION_aspect));
+  strncpy(OPTION_aspect, ASPECT_RATIOS[i], sizeof(OPTION_aspect) - 1);
+  OPTION_aspect[sizeof(OPTION_aspect) - 1] = 0;
   emu->aspect_ratio = i;
 }
 

@@ -476,7 +476,8 @@ struct jit *jit_create(const char *tag, struct jit_frontend *frontend,
                        struct jit_backend *backend) {
   struct jit *jit = calloc(1, sizeof(struct jit));
 
-  strncpy(jit->tag, tag, sizeof(jit->tag));
+  strncpy(jit->tag, tag, sizeof(jit->tag - 1));
+  jit->tag[sizeof(jit->tag) - 1] = 0;
   jit->frontend = frontend;
   jit->backend = backend;
 

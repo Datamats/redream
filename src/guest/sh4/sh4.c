@@ -204,7 +204,7 @@ static struct jit_guest *sh4_guest_create(struct sh4 *sh4) {
   guest->offset_interrupts =
       (int)offsetof(struct sh4_context, pending_interrupts);
   guest->compile_code = (jit_compile_cb)&sh4_compile_code;
-  guest->link_code = (jit_link_cb)&sh4_link_code;
+  guest->link_code = (jit_link_cb)(void*)&sh4_link_code;
   guest->check_interrupts = (jit_interrupt_cb)&sh4_check_interrupts;
   guest->invalid_instr = (sh4_invalid_instr_cb)&sh4_invalid_instr;
   guest->ltlb = (sh4_ltlb_cb)&sh4_mmu_ltlb;

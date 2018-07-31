@@ -202,7 +202,8 @@ shmem_handle_t create_shared_memory(const char *filename, size_t size,
 #endif
 
   /* update entry, remove from free list */
-  strncpy(shmem->filename, filename, sizeof(shmem->filename));
+  strncpy(shmem->filename, filename, sizeof(shmem->filename) - 1);
+  shmem->filename[sizeof(shmem->filename)-1] = 0;
   shmem->handle = handle;
   list_remove(&free_shmem, &shmem->free_it);
 
